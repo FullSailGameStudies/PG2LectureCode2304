@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Day01
 {
@@ -17,7 +18,7 @@ namespace Day01
     
             Vocabulary:
         
-                  method (or function): https://www.w3schools.com/cs/cs_methods.php
+                  method(or function) : https://www.w3schools.com/cs/cs_methods.php
                       a block of code that can be referenced by name to run the code it contains.
 
                   parameter: https://www.w3schools.com/cs/cs_method_parameters.php
@@ -47,11 +48,23 @@ namespace Day01
                   Chapters: Array Basics through Looping Examples.
 
      */
+
+
     internal class Program
     {
+        static int Add(int n1, int n2)
+        {
+            return n1 + n2;
+        }
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+            Console.WriteLine("Hello Gotham!");
+            int num1 = 23, num2 = 40;
+            int sum = Add(num1, num2);//pass by value
+            sum = Add(5, 2);
+            PrintSum(sum);
 
             /*
               Calling a method
@@ -82,7 +95,11 @@ namespace Day01
              
             */
             Calculator t1000 = new Calculator();
+            int result = t1000.Sum(13, 420);
+            //$ - interpolated string
+            Console.WriteLine($"The sum of 13 and 420 is {result}");
 
+            Calculator.WhoAmI();
 
 
 
@@ -97,6 +114,7 @@ namespace Day01
                 
                 When you want to create a List variable, replace T with whatever type of data you want to store in the List.
             */
+            string[] heroes = new string[10];
             List<string> names = new List<string>(); //this list stores strings and only strings.
 
             /*
@@ -105,6 +123,11 @@ namespace Day01
                     Create a list that stores floats. Call the variable grades.
              
             */
+            List<float> grades;//null. no list.
+            grades = new();//empty list
+            var scores = new List<int>();
+
+            var anon = new { isGood = true };//anonymous type
 
 
 
@@ -167,6 +190,11 @@ namespace Day01
             Console.ReadKey(true);
         }
 
+        private static void PrintSum(int sum)
+        {
+            Console.WriteLine($"My Sum: {sum}");
+        }
+
         private static int AddOne(int localNumber)
         {
             return localNumber + 1;
@@ -180,6 +208,11 @@ namespace Day01
         public int Sum(int num1, int num2)
         {
             return num1 + num2;
+        }
+
+        public static void WhoAmI()
+        {
+            Console.WriteLine("I am a T800 cybernetic organism.");
         }
 
 
