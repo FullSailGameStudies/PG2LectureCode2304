@@ -59,9 +59,19 @@ namespace Day02
      */
     internal class Program
     {
+        static int Factor(ref int num, int factor)
+        {
+            int orig = num;
+            num *= factor;
+            return orig;
+        }
         static Random randy = new Random();
         static void Main(string[] args)
         {
+            int n = 5, factor = 3;
+            int original = Factor(ref n, factor);
+            Console.WriteLine($"{original} * {factor} = {n}");
+            Console.WriteLine();
 
             /*   
                 ╔══════════════════════════════╗ 
