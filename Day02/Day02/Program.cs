@@ -100,8 +100,8 @@ namespace Day02
             Console.WriteLine($"My grade was curved by {curved} to {grade}");
 
             double toddsGrade= randy.NextDouble() * 100;
-            curved = Curve(ref toddsGrade);
-            Console.WriteLine($"Todd's grade was curved by {curved} to {toddsGrade}");
+            Curve(ref toddsGrade, out double toddsCurve);
+            Console.WriteLine($"Todd's grade was curved by {toddsCurve} to {toddsGrade}");
 
 
 
@@ -126,7 +126,8 @@ namespace Day02
 
                     Write a method to calculate the stats on a list of grades
                     1) create a list of grades in main and add a few grades to it
-                    2) create a method to calculate the min, max, and avg. use out parameters to pass this data back from the method.
+                    2) create a method to calculate the min, max, and avg. 
+                        use out parameters to pass this data back from the method.
                     3) print out the min, max, and avg
              
             */
@@ -170,6 +171,12 @@ namespace Day02
             double curveAmount = gradeToCurve * 0.05;
             gradeToCurve += curveAmount;
             return curveAmount;
+        }
+        //tuples
+        static void Curve(ref double gradeToCurve, out double curveAmount)
+        {
+            curveAmount = gradeToCurve * 0.05;
+            gradeToCurve += curveAmount;
         }
 
         private static void GetRandomColor(out ConsoleColor outColor)
