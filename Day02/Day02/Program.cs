@@ -119,6 +119,7 @@ namespace Day02
             GetRandomColor(out randoColor);
             Console.BackgroundColor = randoColor;
             Console.WriteLine("Hello Gotham!");
+            Console.ResetColor();
 
 
             /*
@@ -131,9 +132,14 @@ namespace Day02
                     3) print out the min, max, and avg
              
             */
-
-
-
+            List<double> pg2 = new List<double>();
+            for (int i = 0; i < 10; i++)
+                pg2.Add(randy.NextDouble() * 100);
+            Stats(pg2, out double min, out double max, out double avg);
+            Console.WriteLine("-------PG2----------");
+            foreach (var pg2grade in pg2)
+                Console.WriteLine($"{pg2grade,7:N2}");
+            Console.WriteLine($"Min: {min}\nMax: {max}\nAverage: {avg}");
 
 
 
@@ -164,6 +170,20 @@ namespace Day02
 
 
 
+        }
+
+        static void Stats(List<double> grades, out double min, out double max, out double avg)
+        {
+            min = double.MaxValue; 
+            max = double.MinValue;
+            double sum = 0;
+            foreach (var grade in grades)
+            {
+                min = Math.Min(grade, min);
+                max = Math.Max(grade, max);
+                sum += grade;
+            }
+            avg = sum / grades.Count;
         }
 
         static double Curve(ref double gradeToCurve)
