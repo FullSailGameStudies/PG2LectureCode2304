@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 
 namespace Day02
 {
@@ -141,6 +142,8 @@ namespace Day02
                 Console.WriteLine($"{pg2grade,7:N2}");
             Console.WriteLine($"Min: {min}\nMax: {max}\nAverage: {avg}");
 
+            (double pg2Min, double pg2Max, double pg2Avg) = Stats(pg2);
+
 
 
             /*   
@@ -155,10 +158,15 @@ namespace Day02
                 2) RemoveAt(index). will remove the item from the list at the index
 
             */
-            List<string> dc = new() { "Batman", "Wonder Woman", "Aquaman", "Superman", "Aquaman" };
+            List<string> dc = new() { "Batman", "Wonder Woman", "Aquaman", "Superman", "Aquaman", "Aquaman" };
+            //{ "Batman", "Wonder Woman", "Aquaman", "Superman", "Aquaman", "Aquaman" }
+            //{ "Batman", "Wonder Woman", "Superman", "Aquaman", "Aquaman", "Aquaman" }
             bool found = dc.Remove("Aquaman");
+            if(found)
+                Console.WriteLine("The first Aquaman was removed.");
 
             dc.RemoveAt(dc.Count - 1);//removes the last item
+            Console.WriteLine("The last Aquaman in the list was removed.");
 
             /*
                 CHALLENGE 3:
@@ -170,6 +178,21 @@ namespace Day02
 
 
 
+        }
+
+        static (double,double,double) Stats(List<double> grades)
+        {
+            double min = double.MaxValue;
+            double max = double.MinValue;
+            double sum = 0;
+            foreach (var grade in grades)
+            {
+                min = Math.Min(grade, min);
+                max = Math.Max(grade, max);
+                sum += grade;
+            }
+            double avg = sum / grades.Count;
+            return (min, max, avg);
         }
 
         static void Stats(List<double> grades, out double min, out double max, out double avg)
