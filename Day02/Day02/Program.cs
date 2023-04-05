@@ -175,7 +175,32 @@ namespace Day02
                     Print the grades.
             */
 
+            pg2.Remove(min);
+            pg2.Remove(max);
 
+
+            dc = new() { "Batman", "Aquaman", "Wonder Woman", "Aquaman", "Aquaman", "Superman", "Aquaman", "Aquaman" };
+            for (int i = 0;i < dc.Count;i++)
+            {
+                if (dc[i] == "Aquaman")
+                {
+                    dc.RemoveAt(i);
+                    i--;
+                }
+            }
+            //OR...use a reverse for loop
+            for (int i = dc.Count - 1; i >= 0; i--)
+            {
+                if (dc[i] == "Aquaman")
+                {
+                    dc.RemoveAt(i);
+                }
+            }
+            Console.WriteLine("UPDATED Justice League");
+            foreach (var hero in dc)
+            {
+                Console.WriteLine(hero);
+            }
 
 
         }
