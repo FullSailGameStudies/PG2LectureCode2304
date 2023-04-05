@@ -96,6 +96,12 @@ namespace Day02
              
             */
             double grade = randy.NextDouble() * 100;
+            double curved = Curve(ref grade);
+            Console.WriteLine($"My grade was curved by {curved} to {grade}");
+
+            double toddsGrade= randy.NextDouble() * 100;
+            curved = Curve(ref toddsGrade);
+            Console.WriteLine($"Todd's grade was curved by {curved} to {toddsGrade}");
 
 
 
@@ -157,6 +163,13 @@ namespace Day02
 
 
 
+        }
+
+        static double Curve(ref double gradeToCurve)
+        {
+            double curveAmount = gradeToCurve * 0.05;
+            gradeToCurve += curveAmount;
+            return curveAmount;
         }
 
         private static void GetRandomColor(out ConsoleColor outColor)
