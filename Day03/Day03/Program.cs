@@ -85,12 +85,73 @@ namespace Day03
                 CHALLENGE 1:
 
                     Write a ColorWriteLine method to print a message with a foreground color in the console.
-                    1) add a string message parameter AND an optional color parameter. Choose whatever default color you want.
+                    1) add a string message parameter AND an optional color parameter (ConsoleColor). Choose whatever default color you want.
                     2) in the method, set the foreground color to the optional parameter
                     3) print the message
              
             */
 
+            ColorWriteLine("Because I'm BATMAN!", ConsoleColor.DarkYellow);
+            ColorWriteLine("Aquaman sucks!");
+
+            string[] names = { "Batman", "Flash", "Aquaman", "Yoda" };
+            List<string> JLA = names.ToList();// new(names);
+            //foreach (string name in names)
+            //{
+            //    JLA.Add(name);
+            //}
+
+            names = JLA.ToArray();
+
+            List<string> screamingJLA = MakeUpper(JLA);
+
+            List<string> JLA2 = new(JLA);// JLA.ToList();
+
+            List<int> scores;// = null;
+            FillList(out scores);
+            Console.WriteLine("\n--------SCORES------");
+            foreach (var item in scores)
+            {
+                Console.WriteLine(item);
+            }
+
+            int x, y;
+            Console.ReadLine();
+            int w = Console.WindowWidth;
+            int h = Console.WindowHeight;
+            Random randy = new Random();
+            while (true)
+            {
+                Console.SetCursorPosition(randy.Next(w), randy.Next(h-1));
+                ColorWriteLine("BATMAN", (ConsoleColor)randy.Next(16));
+            }
+        }
+
+        private static void FillList(out List<int> list)
+        {
+            Random randy = new Random();
+            list = new();
+            for (int i = 0; i < 10; i++)
+            {
+                list.Add(randy.Next());
+            }
+        }
+
+        private static List<string> MakeUpper(List<string> otherList)//by value
+        {
+            List<string> cloned = otherList.ToList();
+            for (int i = 0; i < cloned.Count; i++)
+            {
+                cloned[i] = cloned[i].ToUpper();
+            }
+            return cloned;
+        }
+
+        static void ColorWriteLine(string message, ConsoleColor color = ConsoleColor.DarkCyan) 
+        { 
+            Console.ForegroundColor = color;
+            Console.Write(message);
+            Console.ResetColor();
         }
 
         static string PostFix(string fileName, int postFixNumber = 1) //postFixNumber is optional

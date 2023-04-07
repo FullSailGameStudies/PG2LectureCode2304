@@ -203,6 +203,7 @@ namespace Day02
             }
 
 
+
         }
 
         static (double,double,double) Stats(List<double> grades)
