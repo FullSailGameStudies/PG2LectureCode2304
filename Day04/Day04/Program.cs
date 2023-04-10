@@ -23,7 +23,7 @@ namespace Day04
                 while swapped
             end procedure
          */
-        static void BubbleSort(List<int> unsorted)
+        static void BubbleSort(List<string> unsorted) //: where T is IComparable
         {
             int n = unsorted.Count;
             bool swapped;
@@ -32,7 +32,8 @@ namespace Day04
                 swapped = false;
                 for (int i = 1; i <= n - 1; i++)
                 {
-                    if (unsorted[i - 1] > unsorted[i])
+                    int compResult = unsorted[i - 1].CompareTo(unsorted[i]);
+                    if (compResult > 0)
                     {
                         //swap(A, i - 1, i);
                         //int temp = A[i - 1];
@@ -45,13 +46,32 @@ namespace Day04
                 --n;
             } while (swapped);
         }
+
+        static Random rando = new();
+        static void RecurseMe()
+        {
+            //an exit condition
+            int random = rando.Next(1000);
+            if (random < 900)
+            {
+                Console.WriteLine(random);
+                RecurseMe();
+            }
+        }
         static void Main(string[] args)
         {
-            List<int> nums = new() { 5, 420, 13, 1, 7 };
-            BubbleSort(nums);
-            foreach (int x in nums)
+            RecurseMe();
+            //List<int> nums = new() { 5, 420, 13, 1, 7 };
+            //BubbleSort(nums);
+            //foreach (int x in nums)
+            //    Console.Write($"{x} ");
+            //Console.WriteLine(  );
+
+            List<string> DC = new() { "Wonder Woman", "Flash", "Superman", "Batman", "Green Lantern", "Aquaman" };
+            BubbleSort(DC);
+            foreach (var x in DC)
                 Console.Write($"{x} ");
-            Console.WriteLine(  );
+            
 
             /*
                 ╔═══════╗ 
@@ -60,7 +80,7 @@ namespace Day04
              
                 Sorting is used to order the items in a list/array is a specific way
              
-                CHALLENGE 2:
+                CHALLENGE 1:
 
                     Convert this BubbleSort pseudo-code into a C# method             
                      
@@ -80,6 +100,26 @@ namespace Day04
                     
             */
 
+            //use CompareTo method.
+            // -1  LESS THAN
+            //  0  EQUAL TO
+            //  1  GREATER THAN
+            string s1 = "Batman", s2 = "Aquaman";
+            Console.WriteLine(  );
+            int compResult = s1.CompareTo(s2);
+            if (compResult == 0)
+            {
+                Console.WriteLine($"{s1} EQUALS {s2}");
+            }
+            else if(compResult < 0)
+            {
+                Console.WriteLine($"{s1} LESS THAN {s2}");
+            }
+            else //if (compResult > 0)
+            {
+                Console.WriteLine($"{s1} GREATER THAN {s2}");
+            }
+            Console.WriteLine();
 
 
             //Recursion, Sorting, Searching
@@ -94,13 +134,14 @@ namespace Day04
                 All recursive methods need an exit condition, something that prevents the loop from continuing.
               
             */
+            Console.ReadKey();
             int N = 0;
             RecursiveLoop(N);
             Console.ResetColor();
 
 
             /*
-                CHALLENGE 1:
+                CHALLENGE 2:
 
                     convert this for loop to a recursive method called Bats. Call Bats here in Main.
              
@@ -113,7 +154,30 @@ namespace Day04
             */
 
 
+            Console.ReadKey();
+            Console.WriteLine();
+            int i = 0;
+            Bats(i);
 
+            Console.Write((char)66);
+            Console.Write((char)65);
+            Console.Write((char)84);
+            Console.Write((char)77);
+            Console.Write((char)65);
+            Console.Write((char)78);
+            Console.WriteLine();
+
+        }
+        static void Bats(int i)
+        {
+            if(i < 100)//exit condition
+            {
+                Console.Write((char)78);
+                Console.Write((char)65);
+                Console.Write(' ');
+
+                Bats(++i);//post vs pre
+            }
 
         }
 
