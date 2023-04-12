@@ -166,7 +166,23 @@ namespace Day04
                     Loop over your grades dictionary and print each student name and grade.
              
             */
+            Console.WriteLine("----PG2 April Grades----");
+            foreach (KeyValuePair<string, double> student in grades)
+            {
+                string name = student.Key;
+                double grade = student.Value;
+                Console.Write($"{name,-20}");
+                //ternary (like an if-else)
+                // (condition) ? true case : false case
+                Console.ForegroundColor = (grade < 59.5) ? ConsoleColor.Red :
+                                          (grade < 69.5) ? ConsoleColor.DarkYellow :
+                                          (grade < 79.5) ? ConsoleColor.Yellow :
+                                          (grade < 89.5) ? ConsoleColor.Blue : 
+                                          ConsoleColor.Green;
+                Console.WriteLine($" {grade,7:N2}");
 
+                Console.ResetColor();
+            }
 
 
 
@@ -182,13 +198,30 @@ namespace Day04
                 1) ContainsKey(key)
                 2) TryGetValue(key, out value)
                
-            */            
-            if(backpack.ContainsKey(Weapon.Axe))
+            */
+            if (backpack.ContainsKey(Weapon.Axe))
                 Console.WriteLine($"{Weapon.Axe} count: {backpack[Weapon.Axe]}");
 
             if(backpack.TryGetValue(Weapon.Spear, out int spearCount))
                 Console.WriteLine($"{Weapon.Spear} count: {spearCount}");
 
+            bool onTheMenu = menu.ContainsKey("Dino Nuggies");
+            if(onTheMenu)
+            {
+                Console.WriteLine("You're in luck! Dino Nuggies are on the menu!");
+            }
+            else
+            {
+                Console.WriteLine("Dino Nuggies is NOT on the menu!");
+            }
+
+            string item = "Mac and cheese";
+            if(menu.TryGetValue(item, out double menuPrice))
+            {
+                Console.WriteLine($"{item} is on the menu. It costs {menuPrice:C2}");
+            }
+            else
+                Console.WriteLine($"{item} is not on the menu.");
 
             /*
                 CHALLENGE 5:
