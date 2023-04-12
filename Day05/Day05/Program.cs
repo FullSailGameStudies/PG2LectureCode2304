@@ -231,6 +231,19 @@ namespace Day04
                     else print out a message that the student was not found
              
             */
+            do
+            {
+                Console.Write("Student's name: ");
+                string name = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(name)) break;
+
+                if(grades.TryGetValue(name, out double studentGrade))
+                {
+                    Console.WriteLine($"{name}'s grade is {studentGrade:N2}");
+                }
+                else
+                    Console.WriteLine($"{name} is not in PG2 this month.");
+            } while (true);
 
 
 
@@ -251,6 +264,16 @@ namespace Day04
             */
             backpack[Weapon.Mace] = 0; //sell all maces
 
+
+            string kidsItem = "Mac and cheese";
+            if(menu.ContainsKey(kidsItem))
+            {
+                double menuValue = menu[kidsItem];
+                menu[kidsItem] = menuValue + 2;//overwrite the existing value
+
+                Console.WriteLine($"{kidsItem} was {menuValue:C2}. Now it costs {menu[kidsItem]:C2}. Thanks Putin!!!");
+            }
+            
 
 
             /*
