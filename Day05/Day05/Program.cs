@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
 using System.Threading;
 
 namespace Day04
@@ -51,12 +53,33 @@ namespace Day04
            
             Dictionary<Weapon, int> backpack = new Dictionary<Weapon, int>();//will store the counts of each kind of weapon
 
-            /*
-                CHALLENGE 2:
+            List<int> nums = new() { 1, 2, 3, 4 };
+            nums.Add(5);
+            nums.Add(6);
+            Dictionary<string, double> menu = new Dictionary<string, double>()
+            {
+                //{ key, value } key-value pair
+                { "Hamburger", 13.99 },
+                { "Tater tots", 4.99 }
+            };
+            menu.Add("Fish sticks", 10.99);
+            menu.Add("Chicken alfredo", 15.99);
+            try
+            {
+                menu.Add("Chicken alfredo", 17.99);//cause an exception
+            }
+            catch (ArgumentException aex)
+            {
+            }
+            catch (Exception ex)
+            {
+            }
+            menu.TryAdd("Chicken alfredo", 17.99);
 
-                    Create a Dictionary that stores names (string) and grades. Call the variable grades.
-             
-            */
+            menu["Wings"] = 9.99;
+            menu["Mac and cheese"] = 11.99;
+            menu["Mac and cheese"] = 13.99;//will NOT cause an exception. will overwrite.
+
 
 
 
@@ -81,13 +104,30 @@ namespace Day04
             backpack[Weapon.Spear] = 1;
 
             /*
+                CHALLENGE 2:
+
+                    Create a Dictionary that stores names (string) and grades. Call the variable grades.
+             
+            
                 CHALLENGE 3:
 
                     Add students and grades to your dictionary that you created in CHALLENGE 2.
              
             */
+            Random rando = new Random();
+            Dictionary<string, double> grades = new()
+            {
+                {"Cristian",  rando.NextDouble() * 100 },
+                {"Jacob",  rando.NextDouble() * 100 },
+                {"John",  rando.NextDouble() * 100 }
+            };
+            grades.Add("Joseph", rando.NextDouble() * 100);
+            grades.Add("Kavion", rando.NextDouble() * 100);
+            grades.Add("Kevin", rando.NextDouble() * 100);
 
-
+            grades["Sebastian"] = rando.NextDouble() * 100;
+            grades["Thomas"] = rando.NextDouble() * 100;
+            grades["Asha"] = rando.NextDouble() * 100;
 
 
 
@@ -105,7 +145,20 @@ namespace Day04
             foreach (KeyValuePair<Weapon,int> weaponCount in backpack)
                 Console.WriteLine($"You have {weaponCount.Value} {weaponCount.Key}");
 
-
+            Console.OutputEncoding = Encoding.UTF8;
+            //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("de-DE");
+            //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("de-DE");
+            Console.WriteLine("----Welcome to Kevin's Bistro----");
+            foreach (KeyValuePair<string, double> menuItem in menu)
+            {
+                string name = menuItem.Key;
+                double price = menuItem.Value;
+                Console.WriteLine($"{name,-20} {price,7:C2}");//C currency
+            }
+            //for (int i = 0; i < menu.Count; i++)
+            //{
+            //    KeyValuePair<string,double> price = menu.ElementAt(i);
+            //}
 
             /*
                 CHALLENGE 4:
