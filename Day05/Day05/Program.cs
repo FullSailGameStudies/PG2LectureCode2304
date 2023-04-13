@@ -50,7 +50,7 @@ namespace Day04
                 When you want to create a Dictionary variable, replace TKey with whatever type of data you want to use for the keys and
                 replace TValue with the type you want to use for the values.
             */
-           
+
             Dictionary<Weapon, int> backpack = new Dictionary<Weapon, int>();//will store the counts of each kind of weapon
 
             List<int> nums = new() { 1, 2, 3, 4 };
@@ -142,7 +142,7 @@ namespace Day04
                 You should use a foreach loop when needing to loop over the entire dictionary.
                
             */
-            foreach (KeyValuePair<Weapon,int> weaponCount in backpack)
+            foreach (KeyValuePair<Weapon, int> weaponCount in backpack)
                 Console.WriteLine($"You have {weaponCount.Value} {weaponCount.Key}");
 
             Console.OutputEncoding = Encoding.UTF8;
@@ -166,23 +166,7 @@ namespace Day04
                     Loop over your grades dictionary and print each student name and grade.
              
             */
-            Console.WriteLine("----PG2 April Grades----");
-            foreach (KeyValuePair<string, double> student in grades)
-            {
-                string name = student.Key;
-                double grade = student.Value;
-                Console.Write($"{name,-20}");
-                //ternary (like an if-else)
-                // (condition) ? true case : false case
-                Console.ForegroundColor = (grade < 59.5) ? ConsoleColor.Red :
-                                          (grade < 69.5) ? ConsoleColor.DarkYellow :
-                                          (grade < 79.5) ? ConsoleColor.Yellow :
-                                          (grade < 89.5) ? ConsoleColor.Blue : 
-                                          ConsoleColor.Green;
-                Console.WriteLine($" {grade,7:N2}");
-
-                Console.ResetColor();
-            }
+            PrintGrades(grades);
 
 
 
@@ -202,11 +186,11 @@ namespace Day04
             if (backpack.ContainsKey(Weapon.Axe))
                 Console.WriteLine($"{Weapon.Axe} count: {backpack[Weapon.Axe]}");
 
-            if(backpack.TryGetValue(Weapon.Spear, out int spearCount))
+            if (backpack.TryGetValue(Weapon.Spear, out int spearCount))
                 Console.WriteLine($"{Weapon.Spear} count: {spearCount}");
 
             bool onTheMenu = menu.ContainsKey("Dino Nuggies");
-            if(onTheMenu)
+            if (onTheMenu)
             {
                 Console.WriteLine("You're in luck! Dino Nuggies are on the menu!");
             }
@@ -216,7 +200,7 @@ namespace Day04
             }
 
             string item = "Mac and cheese";
-            if(menu.TryGetValue(item, out double menuPrice))
+            if (menu.TryGetValue(item, out double menuPrice))
             {
                 Console.WriteLine($"{item} is on the menu. It costs {menuPrice:C2}");
             }
@@ -237,7 +221,7 @@ namespace Day04
                 string name = Console.ReadLine();
                 if (string.IsNullOrWhiteSpace(name)) break;
 
-                if(grades.TryGetValue(name, out double studentGrade))
+                if (grades.TryGetValue(name, out double studentGrade))
                 {
                     Console.WriteLine($"{name}'s grade is {studentGrade:N2}");
                 }
@@ -266,14 +250,14 @@ namespace Day04
 
 
             string kidsItem = "Mac and cheese";
-            if(menu.ContainsKey(kidsItem))
+            if (menu.ContainsKey(kidsItem))
             {
                 double menuValue = menu[kidsItem];
                 menu[kidsItem] = menuValue + 2;//overwrite the existing value
 
                 Console.WriteLine($"{kidsItem} was {menuValue:C2}. Now it costs {menu[kidsItem]:C2}. Thanks Putin!!!");
             }
-            
+
 
 
             /*
@@ -282,6 +266,43 @@ namespace Day04
                     Pick any student and curve the grade (add 5) that is stored in the grades dictionary
              
             */
+
+            do
+            {
+                Console.Write("Student's name to curve: ");
+                string name = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(name)) break;
+
+                if (grades.TryGetValue(name, out double studentGrade))
+                {
+                    grades[name] = Math.Min(100, studentGrade + 5);
+                    PrintGrades(grades);
+                    Console.WriteLine($"{name}'s grade was {studentGrade:N2}. Now it's {grades[name]:N2}.");
+                }
+                else
+                    Console.WriteLine($"{name} is not in PG2 this month.");
+            } while (true);
+        }
+
+        private static void PrintGrades(Dictionary<string, double> grades)
+        {
+            Console.WriteLine("----PG2 April Grades----");
+            foreach (KeyValuePair<string, double> student in grades)
+            {
+                string name = student.Key;
+                double grade = student.Value;
+                Console.Write($"{name,-20}");
+                //ternary (like an if-else)
+                // (condition) ? true case : false case
+                Console.ForegroundColor = (grade < 59.5) ? ConsoleColor.Red :
+                                          (grade < 69.5) ? ConsoleColor.DarkYellow :
+                                          (grade < 79.5) ? ConsoleColor.Yellow :
+                                          (grade < 89.5) ? ConsoleColor.Blue :
+                                          ConsoleColor.Green;
+                Console.WriteLine($" {grade,7:N2}");
+
+                Console.ResetColor();
+            }
         }
     }
 }
