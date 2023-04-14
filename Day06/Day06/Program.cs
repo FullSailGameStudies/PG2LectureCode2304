@@ -56,7 +56,33 @@ namespace Day06
             Dictionary<string, double> grades = new();
             foreach (var student in students)
                 grades.Add(student, rando.NextDouble() * 100);
+
+            PrintGrades(grades);
+            do
+            {
+                Console.Write("Student to remove: ");
+                string name = Console.ReadLine();
+                if (string.IsNullOrEmpty(name)) break;
+
+                bool wasRemoved = grades.Remove(name);
+                if (wasRemoved)
+                {
+                    Console.WriteLine($"{name} was dropped!");
+                    PrintGrades(grades);
+                }
+                else
+                    Console.WriteLine($"{name} was not in the course.");
+            } while (true);
+
             
+        }
+
+        private static void PrintGrades(Dictionary<string, double> grades)
+        {
+            foreach (var student in grades)
+            {
+                Console.WriteLine($"{student.Key,-10} {student.Value:N2}");
+            }
         }
     }
 }
