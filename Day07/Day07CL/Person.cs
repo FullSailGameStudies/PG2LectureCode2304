@@ -9,7 +9,7 @@ namespace Day07CL
     public class Person
     {
         #region Fields
-        private int _age;
+        private int _age = 0;
         #endregion
 
         #region Properties
@@ -26,8 +26,25 @@ namespace Day07CL
             }
         }
 
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
+        #endregion
+
+        #region Constructors
+        //If no constructor, the compiler will give us a default
+
+        //a default constructor (ctor with no parameters)
+        public Person()
+        {
+            _age = 0;
+            Name = string.Empty;
+        }
+
+        public Person(int age, string name)//use the params to assign values to fields/properties
+        {
+            Age = age;
+            Name = name;
+        }
         #endregion
     }
 }

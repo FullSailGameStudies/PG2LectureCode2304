@@ -55,6 +55,12 @@ namespace Day07
                     Add an auto-property for Name
             */
 
+            Person alfred = new Person();//call a ctor to create an instance
+            alfred.Name = "Alfred";
+            alfred.Age = 85;
+
+            Person kevin = new Person(12, "Kevin");
+
 
 
 
@@ -135,7 +141,7 @@ namespace Day07
 
             
                 CHALLENGE 4:
-                    Add a constructor to the Person class to initialize Age and Name
+                    Add a constructor to the Weapon class to initialize Level, maxDamage, cost
             */
 
 
