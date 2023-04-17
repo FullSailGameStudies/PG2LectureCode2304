@@ -41,7 +41,7 @@ namespace Day07
     {
         static void Main(string[] args)
         {
-            Weapon pewpew = new Weapon();
+            Weapon pewpew = new Weapon(5,100,50);
 
             /*
                 CHALLENGE 1:
@@ -172,6 +172,11 @@ namespace Day07
             kevin.ItsMyBirthday();//this points to kevin
             Person.PersonReport();//this??
 
+
+            int num;
+            num = 5;
+            Color color;
+            color.R = 255;
 
 
 
