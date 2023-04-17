@@ -168,8 +168,9 @@ namespace Day07
                 CHALLENGE 5:
                     write an ItsMyBirthday method. increment age and print out a happy message.
             */
-
-
+            alfred.ItsMyBirthday();//this points to alfred
+            kevin.ItsMyBirthday();//this points to kevin
+            Person.PersonReport();//this??
 
 
 

@@ -45,5 +45,14 @@ namespace Day07CL
             return totalDamage;
         }
         #endregion
+
+        #region CTors
+        public Weapon(int level, int maxDamage, int cost)
+        {
+            Level = level;
+            Cost = cost;
+            _maxDamage = maxDamage;
+        }
+        #endregion
     }
 }
