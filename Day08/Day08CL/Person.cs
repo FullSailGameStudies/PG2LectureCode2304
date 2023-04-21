@@ -21,6 +21,12 @@ namespace Day08CL
         {
             Console.WriteLine($"Time to eat some {food}! nom nom.");
         }
+
+        public void Eat(string food, string drink) 
+        {
+            Eat(food);
+            Console.WriteLine($"Slurping {drink}!");
+        }
     }
 
     public class Employee : Person
