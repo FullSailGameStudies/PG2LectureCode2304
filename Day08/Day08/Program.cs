@@ -110,6 +110,29 @@ namespace Day08
                     Downcast to a Pistol and print the rounds and mag capacity of each pistol
             */
 
+            //going from a BASE variable to a DERIVED variable
+            //DOWNCASTING
+            //this is NOT SAFE! 8-O
+            peep = new Person("Bob", 15);
+            try
+            {
+                Employee e1 = (Employee)peep;
+            }
+            catch (Exception)
+            {
+            }
+
+            //use the 'as' keyword to cast
+            //will return null if does not work
+            Employee e2 = peep as Employee;
+            if(e2 != null) 
+                Console.WriteLine(e2.Salary);
+
+            //use the 'is' keyword with pattern matching
+            if(peep is Employee e3)
+            {
+                Console.WriteLine(e3.Salary);
+            }
 
 
 
