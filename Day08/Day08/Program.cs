@@ -53,9 +53,18 @@ namespace Day08
 
 
                 CHALLENGE 2:
-                    Create a List of Weapon. Create several Pistols and add them to the list of weapons.
+                    Create a List of Weapon. 
+                    Create several Pistols and add them to the list of weapons.
             */
 
+            int num = 5;//4 bytes
+            long bigNum = num;//8 bytes. Implicit casting.
+            num = (int)bigNum;//explicit
+
+            //from a DERIVED variable to a BASE variable
+            //UPCASTING. always safe. :-)
+            Person peep = serf;
+            //Console.WriteLine(peep.Salary);
 
 
 
