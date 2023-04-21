@@ -1,4 +1,6 @@
-﻿namespace Day08
+﻿using Day08CL;
+
+namespace Day08
 {
     /*                    DERIVING CLASSESS          
                                                                
@@ -22,6 +24,7 @@
     {
         static void Main(string[] args)
         {
+            Employee serf = new Employee(1000, "Kevin", 12);
 
             /*
                 CHALLENGE 1:
