@@ -16,5 +16,27 @@ namespace Day08CL
             Rounds = rounds;
             MagCapacity = magCapacity;
         }
+        public override void ShowMe()
+        {
+            base.ShowMe();
+            Console.WriteLine($"\tRounds: {Rounds}\tMagazine Capacity: {MagCapacity}");
+
+        }
+    }
+
+    public class RocketLauncher : Weapon
+    {
+        public RocketLauncher(double projectileSpeed, int range, int damage) : base(range, damage)
+        {
+            ProjectileSpeed = projectileSpeed;
+        }
+
+        public double ProjectileSpeed { get; }
+
+        public override void ShowMe()
+        {
+            base.ShowMe();
+            Console.WriteLine($"\tProjectile speed: {ProjectileSpeed}. (safely dodgable)");
+        }
     }
 }

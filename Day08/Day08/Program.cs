@@ -60,6 +60,7 @@ namespace Day08
             List<Weapon> dorasBackpack = new List<Weapon>();
             dorasBackpack.Add(new Pistol(15, 15, 1500, 5000));//upcasting
             dorasBackpack.Add(new Pistol(5, 5, 500, 100));
+            dorasBackpack.Add(new RocketLauncher(2000, 32, 60000));
 
             int num = 5;//4 bytes
             long bigNum = num;//8 bytes. Implicit casting.
@@ -179,6 +180,10 @@ namespace Day08
                     Override Weapon's ShowMe method in the Pistol method.
                     In Pistol's version, call the base version and print out the rounds and magCapacity
             */
+            foreach (Weapon weapon in dorasBackpack)
+            {
+                weapon.ShowMe();
+            }
         }
     }
 }
