@@ -57,6 +57,10 @@ namespace Day08
                     Create several Pistols and add them to the list of weapons.
             */
 
+            List<Weapon> dorasBackpack = new List<Weapon>();
+            dorasBackpack.Add(new Pistol(15, 15, 1500, 5000));//upcasting
+            dorasBackpack.Add(new Pistol(5, 5, 500, 100));
+
             int num = 5;//4 bytes
             long bigNum = num;//8 bytes. Implicit casting.
             num = (int)bigNum;//explicit
