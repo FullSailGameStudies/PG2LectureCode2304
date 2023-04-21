@@ -110,6 +110,15 @@ namespace Day08
                     Downcast to a Pistol and print the rounds and mag capacity of each pistol
             */
 
+            foreach (Weapon weapon in dorasBackpack)
+            {
+                weapon.ShowMe();
+                if(weapon is Pistol pewpew)
+                {
+                    Console.WriteLine($"\tRounds: {pewpew.Rounds}\tMagazine Capacity: {pewpew.MagCapacity}");
+                }
+            }
+
             //going from a BASE variable to a DERIVED variable
             //DOWNCASTING
             //this is NOT SAFE! 8-O
@@ -134,6 +143,11 @@ namespace Day08
                 Console.WriteLine(e3.Salary);
             }
 
+            Manager theMan = new Manager(100000, "Bruce", 35);
+            peep = theMan;//upcasting. always safe. :-D
+
+            Employee e5 = theMan;
+            e5.DoWork(12);
 
 
 

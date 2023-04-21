@@ -32,5 +32,25 @@ namespace Day08CL
         {
             Salary = salary;
         }
+
+        public virtual void DoWork(int numberOfHours)
+        {
+            Console.WriteLine($"Off to do some work! I'll be busy for {numberOfHours} hours.");
+        }
+    }
+
+    public class Manager : Employee
+    {
+        public Manager(double salary, string name, int age) : base(salary, name, age)
+        {
+        }
+
+        public override void DoWork(int numberOfHours)
+        {
+            Eat("sushi");
+            //base.DoWork(numberOfHours);//when calling the base, you are EXTENDING the method
+            //if you do NOT call the base, you are FULLY OVERRIDING the method
+            Console.WriteLine($"Off to meetings for {numberOfHours-2}. Then I'll work for 2 hours.");
+        }
     }
 }
