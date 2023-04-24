@@ -1,4 +1,6 @@
-﻿namespace Day10
+﻿using Newtonsoft.Json;
+
+namespace Day10
 {
 
     /*
@@ -17,6 +19,18 @@
             the using() statement can ensure that the file is closed
 
     */
+
+    public enum Powers
+    {
+        Teleportation, Money, Invisibility, Explosions, LaserEyes, Flight, Speed, Strength, Magic, FreezeBreath, Swimming
+    }
+    public class Superhero
+    {
+        public string Name { get; set; }
+        public string Secret { get; set; }
+        public Powers SuperPower { get; set; }
+
+    }
     internal class Program
     {
         static void Main(string[] args)
@@ -126,8 +140,26 @@
 
             */
 
+            List<Superhero> JLA = new();
+            JLA.Add(new Superhero() { Name = "Batman", Secret = "Bruce Wayne", SuperPower = Powers.Money });
+            JLA.Add(new Superhero() { Name = "Wonder Woman", Secret = "Diana Prince", SuperPower = Powers.Strength });
+            JLA.Add(new Superhero() { Name = "Superman", Secret = "Clark Kent", SuperPower = Powers.Flight });
+            JLA.Add(new Superhero() { Name = "Flash", Secret = "Barry Allen", SuperPower = Powers.Speed });
+            JLA.Add(new Superhero() { Name = "Hawkman", Secret = "Dave", SuperPower = Powers.Flight });
+            JLA.Add(new Superhero() { Name = "Aquaman", Secret = "Arthur Curry", SuperPower = Powers.Swimming });
 
+            dougPath = Path.ChangeExtension(dougPath, "json");
+            using (StreamWriter sw = new StreamWriter(dougPath))
+            {
+                using (JsonTextWriter jtw = new(sw))
+                {
+                    JsonSerializer serializer = new JsonSerializer();
+                    serializer.Formatting = Formatting.Indented;
+                    serializer.Serialize(jtw, JLA);
+                }
+            }
 
+            File.WriteAllText(dougPath, JsonConvert.SerializeObject(JLA, Formatting.Indented));
 
 
 
@@ -139,6 +171,28 @@
                 Recreating the objects from the saved state (data) of objects
 
             */
+
+            filePath = "dougie.json";
+            if(File.Exists(dougPath))
+            {
+                string dougieText = File.ReadAllText(dougPath);
+                //Ctrl+K,S to surround text
+                try
+                {
+                    List<Superhero> jla2 = JsonConvert.DeserializeObject<List<Superhero>>(dougieText);
+
+                    Console.WriteLine(" The Justice League ");
+                    foreach (var hero in jla2)
+                    {
+                        Console.WriteLine($"I am {hero.Name} (aka {hero.Secret}). I can do {hero.SuperPower}!");
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
 
         }
     }
