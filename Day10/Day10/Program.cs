@@ -21,6 +21,34 @@
     {
         static void Main(string[] args)
         {
+            string dougPath = @"C:\temp\2304\doug.txt";
+            char delimiter = '~';
+            using (StreamWriter sw = new StreamWriter(dougPath))//IDisposable
+            {
+                sw.Write("Batman rules!");
+                sw.Write(delimiter);
+                sw.Write(5);
+                sw.Write(delimiter);
+                sw.Write(true);
+                sw.Write(delimiter);
+                sw.Write("Kevin is my hero.");
+            }
+
+            using (StreamReader sr = new StreamReader(dougPath))
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    Console.WriteLine(line);
+                    string[] dougData = line.Split(delimiter);
+                    foreach (var dougItem in dougData)
+                    {
+                        Console.WriteLine(dougItem);
+                    }
+                }
+            }
+
+            string dougText = File.ReadAllText(dougPath);//opens, reads, closes the file
             /*
                 ╔══════════╗ 
                 ║ File I/O ║
@@ -67,8 +95,16 @@
                 use the string's Split method
 
             */
-            string csvString = "Batman;Bruce Wayne;Bats;The Dark Knight";
+            string csvString = "Batman;Bruce Wayne;Bats;;;The Dark Knight";
             string[] data = csvString.Split(';');
+            csvString += "|Joker|Poison Ivy||Bane|Calendar Man|Penguin|The Riddler|Scarecrow|Mr. Freeze";
+            data = csvString.Split(new char[] { ';', '|' }, StringSplitOptions.RemoveEmptyEntries);
+
+            int index = 0;
+            foreach (var item in data)
+            {
+                Console.WriteLine($"{++index}. {item}");
+            }
 
             /*
                 CHALLENGE 1:
